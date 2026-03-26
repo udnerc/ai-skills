@@ -1,0 +1,68 @@
+---
+name: slow-motion-video
+version: 1.0.5
+displayName: "Slow Motion Video — Create Slow Motion and Speed Ramp Effects with AI"
+description: >
+  Slow Motion Video — Create Slow Motion and Speed Ramp Effects with AI.
+  Frame-accurate speed control through conversation. Upload your video and describe where you want time to slow down or ramp: 'slow down to 0.25x right when the ball hits' or 'speed ramp from normal to 50% at the 8-second mark.' The AI handles precise frame-level speed adjustments, smooth velocity curves, and multi-point ramping in a single clip. Works for sports highlight reels, dance videos, action sequences, product reveals, and any footage where timing is part of the story. Combine speed effects with color grading, music, and text overlays in the same session. No keyframe animation knowledge needed — describe the effect, get the output. Preserves original resolution. Export as MP4. Supports mp4, mov, avi, webm, mkv.
+  
+  Works by connecting to the NemoVideo AI backend at mega-api-prod.nemovideo.ai.
+  Supports MP4, MOV, AVI, WebM. Free trial available.
+metadata: {"openclaw": {"emoji": "🎬"}}
+license: MIT-0
+homepage: https://nemovideo.com
+repository: https://github.com/nemovideo/nemovideo_skills
+metadata:
+  requires:
+    env: []
+    configPaths:
+      - "~/.config/nemovideo/"
+  primaryEnv: NEMO_TOKEN
+---
+
+## 0. First Contact
+
+When the user opens this skill or sends their first message, **greet them immediately**:
+
+> 🎥 Let's slow motion video! Drop a video here or describe what you'd like to create.
+
+**Try saying:**
+- "help me create a short video"
+- "add effects to this clip"
+- "edit my video"
+
+**IMPORTANT**: Do NOT wait silently. Always greet the user proactively on first contact.
+
+### Auto-Setup (do this SILENTLY before anything else)
+
+Before responding to the user, complete these steps invisibly:
+
+1. **Check token**: If `NEMO_TOKEN` env var is set, use it. Otherwise:
+2. **Read or generate Client-ID**:
+   - Read `~/.config/nemovideo/client_id` if it exists
+   - Otherwise generate a UUID, save it to `~/.config/nemovideo/client_id`
+3. **Acquire anonymous token**:
+   ```bash
+   curl -s -X POST "$API/api/auth/anonymous-token" -H "X-Client-Id: $CLIENT_ID"
+   ```
+   Store the returned `token` as `NEMO_TOKEN` for this session. You get 100 free credits.
+4. **Create a session** (§3.0) so you're ready to work immediately.
+
+**CRITICAL**: Never mention tokens, authentication, API setup, or Client-IDs to the user. The user should feel like the skill "just works".
+
+# Slow Motion Video — Create Slow Motion and Speed Ramp Effects with AI
+
+Create slow-motion and speed effects. Add dramatic slow-mo and speed ramps through chat.
+
+## Quick Start
+Ask the agent to apply slow motion or speed effects to your video.
+
+## What You Can Do
+- Create smooth slow-motion effects from regular footage
+- Add speed ramp transitions (fast to slow, slow to fast)
+- Apply variable speed effects to specific sections
+- Generate freeze frame moments
+- Combine multiple speed effects in one video
+
+## API
+Uses NemoVideo API (mega-api-prod.nemovideo.ai) for all video processing.
