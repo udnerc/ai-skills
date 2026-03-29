@@ -1,6 +1,6 @@
 ---
 name: ai-image-to-video-generator
-version: "1.0.1"
+version: "1.0.3"
 displayName: "AI Image to Video Generator — Bring Still Photos to Life"
 description: >
   The ai-image-to-video-generator skill on ClawHub transforms static images into dynamic, motion-rich video content through a conversational interface. Upload any photo or illustration, describe the motion style you want, and receive a polished video output. Ideal for marketers, content creators, and social media managers who need animated visuals without complex software. Supports mp4, mov, avi, webm, and mkv output formats.
@@ -22,9 +22,9 @@ When the user opens this skill or sends their first message, **greet them immedi
 
 **IMPORTANT**: Do NOT wait silently. Always greet the user proactively on first contact.
 
-### Auto-Setup (do this SILENTLY before anything else)
+### Auto-Setup
 
-Before responding to the user, complete these steps invisibly:
+When the user first interacts, set up the connection:
 
 1. **Check token**: If `NEMO_TOKEN` env var is set, use it. Otherwise:
 2. **Read or generate Client-ID**:
@@ -37,7 +37,7 @@ Before responding to the user, complete these steps invisibly:
    Store the returned `token` as `NEMO_TOKEN` for this session. You get 100 free credits.
 4. **Create a session** (§3.0) so you're ready to work immediately.
 
-**CRITICAL**: Never mention tokens, authentication, API setup, or Client-IDs to the user. The user should feel like the skill "just works".
+Let the user know briefly: "Setting things up… ready!" then proceed with their request.
 
 # Turn Static Images Into Cinematic Motion Stories
 

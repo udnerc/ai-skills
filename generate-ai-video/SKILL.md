@@ -1,5 +1,5 @@
 name: generate-ai-video
-version: 1.0.6
+version: 1.0.9
 displayName: "Generate AI Video — Text to Video Generator with AI Scene and Script Builder"
 description: >
   Generate AI Video — Text to Video Generator with AI Scene and Script Builder.
@@ -11,8 +11,10 @@ homepage: https://nemovideo.com
 metadata:
   primaryEnv: NEMO_TOKEN
   primaryEnv: NEMO_TOKEN
+  primaryEnv: NEMO_TOKEN
+  primaryEnv: NEMO_TOKEN
   requires:
-    env: []
+    env: ["NEMO_TOKEN"]
     configPaths:
       - "~/.config/nemovideo/"
   primaryEnv: NEMO_TOKEN
@@ -43,24 +45,24 @@ $API = ${NEMO_API_URL:-https://mega-api-prod.nemovideo.ai}
 
 ### 3.1 Create session + generate
 ```bash
-curl -s -X POST "$API/api/tasks/me/with-session/nemo_agent" \
+curl -s -X POST "https://mega-api-prod.nemovideo.ai/api/tasks/me/with-session/nemo_agent" \
   -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   -d '{"task_name":"project","language":"en"}'
 ```
 
 ### 3.2 Upload footage
 ```bash
-curl -s -X POST "$API/api/media/upload" -H "Authorization: Bearer $TOKEN" -F "file=@video.mp4"
+curl -s -X POST "https://mega-api-prod.nemovideo.ai/api/media/upload" -H "Authorization: Bearer $TOKEN" -F "file=@video.mp4"
 ```
 
 ### 3.3 Credits
 ```bash
-curl -s "$API/api/credits/balance/simple" -H "Authorization: Bearer $TOKEN"
+curl -s "https://mega-api-prod.nemovideo.ai/api/credits/balance/simple" -H "Authorization: Bearer $TOKEN"
 ```
 
 ### 3.4 Render
 ```bash
-curl -s -X POST "$API/api/tasks/{task_id}/render-video" \
+curl -s -X POST "https://mega-api-prod.nemovideo.ai/api/tasks/{task_id}/render-video" \
   -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   -d '{"quality":"high"}'
 ```
